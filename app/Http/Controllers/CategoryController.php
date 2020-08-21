@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Category;
+use App\Category;
 class CategoryController extends Controller
 {
     /**
@@ -24,7 +24,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories=Category::all();
+        return view('backend.categories.create',compact('categories'));
     }
 
     /**

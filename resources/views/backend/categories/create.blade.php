@@ -1,25 +1,38 @@
 @extends('backendtemplate')
 @section('content')
 <div class="container">
-	<h2>Categories Create</h2>
+	<h2 class="text-center pb-4">Categories Create</h2>
 
-	<div class="row">
-		<div class="offset-md-2 col-md-8">
-			<form method="POST" action="{{route('categories.store')}}">
+	{{-- <div class="offset-md-2 col-md-8"> --}}
+
+		<form method="POST" action="{{route('categories.store')}}">
+			<div class="row">
 				@csrf
-				<div class="form-group">
-					<label>Name</label>
-					<input type="text" name="name" class="form-control">
-					@error('name')
-					<p class="text-danger">Your Name is required!</p>
-					@enderror
+
+				<div class="offset-md-3 col-md-1">
+					<label for="name1">
+						<strong>Name</strong>
+					</label>		
 				</div>
 
-				<button class="btn btn-primary" type="submit" name="btnsubmit">Save</button>
-			</form>
+				<div class="col-md-5">
+					<div class="form-group">
+						<input type="text" name="name" class="form-control" id="name1">
+						@error('name')
+						<p class="text-danger">Your Name is required!</p>
+						@enderror
+					</div>
+				</div>
+				
+				<div class="offset-md-3 col-md-2">
+					<button class="btn btn-primary float-right" type="submit" name="btnsubmit">Save</button>
+				</div>
+				
+			</div>
 
-		</div>
+		</form>
+
 	</div>
 
-</div>
+
 @endsection

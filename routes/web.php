@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 // Backend
 // --------
-Route::middleware('role:admin')->group(function(){
+// Route::middleware('role:admin')->group(function(){
 
 Route::get('/dashboard', 'BackendController@dashboard')->name('dashboard');
 Route::resource('/categories','CategoryController');
 
 
-});
+// });
+
 
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'HomeController@index')->name('home');
