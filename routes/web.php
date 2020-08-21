@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('role:admin')->group(function(){
 
 Route::get('/dashboard', 'BackendController@dashboard')->name('dashboard');
+Route::resource('/categories','CategoryController');
+
 
 });
 
