@@ -18,12 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', 'BackendController@dashboard')->name('dashboard');
 Route::resource('/categories','CategoryController');
-
+Route::resource('/services','ServiceController');
+Route::resource('/packages','PackageController');
 
 // });
 
 
-
+Route::resource('/orders','OrderController');
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');

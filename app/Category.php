@@ -9,4 +9,15 @@ class Category extends Model
      protected $fillable = [
         'name',
     ];
+
+     public function services($value='')
+    {
+    	return $this->hasMany('App\Service');
+    	
+    }
+    public function package($value='')
+    {
+    	return $this->belongsTo('App\Package');
+    	
+    }
 }

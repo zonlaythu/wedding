@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
-class CategoryController extends Controller
+
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::All();
-        return view('backend.categories.index',compact('categories'));   
+        $orders=Order::All();
+        return view('backend.orders.index',compact('orders'));
     }
 
     /**
@@ -24,8 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories=Category::all();
-        return view('backend.categories.create',compact('categories'));
+        //
     }
 
     /**
@@ -36,21 +35,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            
-            'name'=>'required',
-
-        ]);
-
-            // Data insert
-            $category=new Category;   
-            $category->name=$request->name;             
- 
-            $category->save();
-
-            // Redirect
-            return redirect()->route('categories.index');  
-
+        //
     }
 
     /**
@@ -72,8 +57,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories=Category::find($id);
-        return view('backend.categories.edit',compact('categories'));
+        //
     }
 
     /**
@@ -85,21 +69,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            
-            'name'=>'required',
-
-        ]);
-
-            // Data insert
-            $category=Category::find($id);
-               
-            $category->name=$request->name;              
-
-            $category->save();
-
-            // Redirect
-            return redirect()->route('categories.index');
+        //
     }
 
     /**
@@ -110,8 +80,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $categories=Category::find($id);
-        $categories->delete();
-        return redirect()->route('categories.index');
+
+    $order=Order::find($id);
+    $order->delete();
+    return redirect()->route('orders.index'); 
+
+    }
     }
 }
