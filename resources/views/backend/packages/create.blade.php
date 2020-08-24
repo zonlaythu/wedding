@@ -22,7 +22,6 @@
 						@enderror
 					</div>
 				</div>
-
 				
 				<div class="offset-md-3 col-md-1">
 					<label for="photo1">
@@ -38,40 +37,20 @@
 					</div>
 				</div>
 
-				<div class="offset-md-3 col-md-1 mt-2">
-					<label>
-						<strong>Category</strong>
+				<div class="offset-md-3 col-md-1">
+					<label for="photo1">
+						<strong>Services</strong>
 					</label>		
 				</div>
 				<div class="col-md-5 mt-2">
-					<select name="category" class="form-control">				
-						@foreach($categories as $category)
-						<option value="{{$category->id}}">
-							{{$category->name}}
-						</option>
-						@endforeach
-					</select>
-					{{-- @error('brand')
-					<p class="text-danger">Your Brand require!</p>
-					@enderror --}}
-				</div>
-				
-				<div class="offset-md-3 col-md-1 mt-2">
-					<label>
-						<strong>Service</strong>
-					</label>		
-				</div>
-				<div class="col-md-5 mt-2">
-					<select name="service" class="form-control">				
+					<select name="services[]" class="sel form-control" multiple="multiple">
+
 						@foreach($services as $service)
 						<option value="{{$service->id}}">
 							{{$service->name}}
 						</option>
 						@endforeach
 					</select>
-					{{-- @error('brand')
-					<p class="text-danger">Your Brand require!</p>
-					@enderror --}}
 				</div>
 
 				<div class="offset-md-3 col-md-2 mt-3">
@@ -82,4 +61,16 @@
 		</form>
 	</div>
 
+@endsection
+
+@section('script')
+<script type="text/javascript">
+
+$(document).ready(function(){
+ $(".sel").select2({
+ 	tags:true,	
+ });
+  })
+	
+</script>
 @endsection

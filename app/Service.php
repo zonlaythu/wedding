@@ -15,9 +15,11 @@ class Service extends Model
     	return $this->belongsTo('App\Category');
     	
     }
-     public function package($value='')
+      public function packages($value='')
     {
-    	return $this->belongsTo('App\Package');
-    	
+        return $this->belongsToMany('App\Package','service_package')
+                ->withTimestamps();
     }
+    
 }
+

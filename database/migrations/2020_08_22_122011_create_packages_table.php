@@ -17,21 +17,9 @@ class CreatePackagesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('photo');
-            $table->tinyInteger('status');
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('service_id');
-
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
-            $table->foreign('category_id')
-                    ->references('id')
-                    ->on('categories')
-                    ->onDelete('cascade');
-
-            $table->foreign('service_id')
-                    ->references('id')
-                    ->on('services')
-                    ->onDelete('cascade');
         });
     }
 

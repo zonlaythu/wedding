@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Package extends Model
 {
      protected $fillable = [
-        'name','photo','status','category_id','service_id',
+        'name','photo','status',
     ];
 
-    public function categories($value='')
+     public function categories($value='')
     {
-    	return $this->hasMany('App\Category');
-    	
+        return $this->hasMany('App\Category');
+        
     }
-    public function services($value='')
+
+     public function services($value='')
     {
-    	return $this->hasMany('App\Service');
-    	
-    }
+      return $this->belongsToMany('App\Service','service_package')->withTimestamps();
+    } 
 }

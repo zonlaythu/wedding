@@ -13,16 +13,30 @@
   <title>SB Admin 2 - Dashboard</title>
 
   <!-- Custom fonts for this template-->
+  <script src="{{asset('backend/vendor/jquery/jquery1.min.js')}}"></script>
+
+
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
+
   <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="{{asset('backend/css/sb-admin-2.min.css')}}" rel="stylesheet">
+ {{-- <link href="{{asset('backend/vendor/select2-bootstrap.css')}}" rel="stylesheet" /> --}}
+{{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet"/>
+ --}} 
+
 
 
 </head>
 
-<body id="page-top">
+{{-- <script type="text/javascript" src="select2-4.0.6-rc.1/dist/js/select2.min.js"></script>
+ --}}<body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -58,7 +72,7 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" aria-expanded="true" aria-controls="collapseTwo">
+          <a class="nav-link collapsed" href="{{route('packages.index')}}" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
             <span>Package</span>
           </a>
@@ -67,7 +81,7 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#" aria-expanded="true" aria-controls="collapseUtilities">
+          <a class="nav-link collapsed" href="{{route('packages.index')}}" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Orders</span>
           </a>
@@ -85,43 +99,19 @@
         
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{route('categories.index')}}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Venues</span></a>
+            <span>Category</span></a>
           </li>
 
           <!-- Nav Item - Tables -->
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('services.index')}}">
               <i class="fas fa-fw fa-table"></i>
-              <span>Foods</span></a>
+              <span>Services</span></a>
             </li>
 
-            <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fas fa-fw fa-table"></i>
-              <span>Dress</span></a>
-            </li>
 
-            <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fas fa-fw fa-table"></i>
-              <span>Dress_type</span></a>
-            </li>
-
-             <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fas fa-fw fa-table"></i>
-              <span>Flowers</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-              <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
 
           </ul>
           <!-- End of Sidebar -->
@@ -288,12 +278,7 @@
                       <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
                       <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                     </a>
-                    <!-- Dropdown - User Information -->
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                      <a class="dropdown-item" href="#">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
-                      </a>
+                   
                       <a class="dropdown-item" href="#">
                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                         Settings
@@ -368,7 +353,8 @@
       </div>
 
       <!-- Bootstrap core JavaScript-->
-      <script src="{{asset('backend/vendor/jquery/jquery.min.js')}}"></script>
+      
+
       <script src="{{asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
       <!-- Core plugin JavaScript-->
@@ -383,6 +369,9 @@
       <!-- Page level custom scripts -->
       <script src="{{asset('backend/js/demo/chart-area-demo.js')}}"></script>
       <script src="{{asset('backend/js/demo/chart-pie-demo.js')}}"></script>
+      
+      {{-- <script src="{{asset('js/app.js')}}"></script> --}}
+      {{-- <script src="https://cdn.js.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script> --}}
       @yield('script')
     </body>
 

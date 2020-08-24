@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 // Backend
 // --------
-// Route::middleware('role:admin')->group(function(){
+Route::middleware('role:admin')->group(function(){
 
 Route::get('/dashboard', 'BackendController@dashboard')->name('dashboard');
 Route::resource('/categories','CategoryController');
 Route::resource('/services','ServiceController');
 Route::resource('/packages','PackageController');
-
-// });
+Route::get('/select2','PackageController@getdata')->name('select2');
+});
 
 
 Route::resource('/orders','OrderController');

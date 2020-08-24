@@ -39,49 +39,7 @@
 						<p class="text-danger">Your photo is required!</p>
 						@enderror
 					</div>
-				</div>
-
-				<div class="offset-md-3 col-md-1 mt-2">
-					<label>
-						<strong>Category</strong>
-					</label>		
-				</div>
-				<div class="col-md-5 mt-2">
-					<select name="category" class="form-control">				
-						@foreach($categories as $category)
-						<option value="{{$category->id}}" 
-							@if($category->id==$packages->category_id)
-							{{'selected'}}
-							@endif>
-							{{$category->name}}
-						</option>
-						@endforeach
-					</select>
-					{{-- @error('brand')
-					<p class="text-danger">Your Brand require!</p>
-					@enderror --}}
-				</div>
-				
-				<div class="offset-md-3 col-md-1 mt-2">
-					<label>
-						<strong>Service</strong>
-					</label>		
-				</div>
-				<div class="col-md-5 mt-2">
-					<select name="service" class="form-control">				
-						@foreach($services as $service)
-						<option value="{{$service->id}}" 
-							@if($service->id==$packages->service_id)
-							{{'selected'}}
-							@endif>
-							{{$service->name}}
-						</option>
-						@endforeach
-					</select>
-					{{-- @error('brand')
-					<p class="text-danger">Your Brand require!</p>
-					@enderror --}}
-				</div>
+				</div>				
 
 				<div class="offset-md-3 col-md-2 mt-3">
 					<button class="btn btn-primary float-right" type="submit" name="btnsubmit">Save</button>

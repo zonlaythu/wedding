@@ -1,10 +1,9 @@
 @extends('backendtemplate')
 @section('content')
 <div class="container">
-<div class="row">
-	<div class="offset-md-2 col-md-8">
+
 		<h2 class="d-inline-block pb-4">Services List</h2>
-	<a href="{{route('services.create')}}" class="btn btn-warning float-right">Add item</a>
+	<a href="{{route('services.create')}}" class="btn btn-primary float-right">Add item</a>
 	<table class="table table-bordered">
 		<thead>
 			<th>No</th>
@@ -24,7 +23,9 @@
 				<td>{{$j++}}</td>
 				<td>{{$service->name}}</td>
 				<td>{{$service->category->name}}</td>
+				<td>{{$service->type}}</td>
 				<td><img src="{{$service->photo}}" class="img-fluid" width="75px;"></td>
+
 				<td>{{$service->price}}</td>
 				<td>{{$service->description}}</td>
 
@@ -42,8 +43,6 @@
 			@endforeach
 		</tbody>
 	</table>
-	</div>
-</div>
 	
 </div>
 @endsection

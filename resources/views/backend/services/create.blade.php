@@ -45,7 +45,7 @@
 				<div class="col-md-5">
 					<div class="form-group">
 						<input type="file" name="photo" class="form-control-file" id="photo1">
-						@error('name')
+						@error('photo')
 						<p class="text-danger">Your photo is required!</p>
 						@enderror
 					</div>

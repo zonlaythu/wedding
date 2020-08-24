@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="offset-md-2 col-md-8">
 		<h2 class="d-inline-block pb-4">Categories List</h2>
-	<a href="{{route('categories.create')}}" class="btn btn-warning float-right">Add item</a>
+	<a href="{{route('categories.create')}}" class="btn btn-primary float-right">Add item</a>
 	<table class="table table-bordered">
 		<thead>
 			<th>No</th>

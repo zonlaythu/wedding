@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Package;
-use App\Category;
+// use App\Category;
 use App\Service;
 class PackageController extends Controller
 {
@@ -15,10 +15,8 @@ class PackageController extends Controller
      */
     public function index()
     {   
-        $services=Service::all();
-        $categories=Category::all();
         $packages=Package::all();
-        return view('backend.packages.index',compact('packages','services','categories'));
+        return view('backend.packages.index',compact('packages'));
     }
 
     /**
@@ -27,11 +25,10 @@ class PackageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $categories=Category::All();
-        $services=Service::All();
+    {    
+        $services=Service::All();   
         $packages=Package::All();
-        return view('backend.packages.create',compact('categories','services','packages'));
+        return view('backend.packages.create',compact('packages','services'));
     }
 
     /**
@@ -42,30 +39,34 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        $service=$request->services;
+        // dd($service);
+        for ($i=0; $i < count($service) ; $i++) { 
+            $pservice=new Service();
+           $pservice->name=$service[$i];
+           // $pservice->save();
+           
+        }
         $request->validate([
             'name'=>'required',
             'photo'=>'required',
-            'category'=>'required',
-            'service'=>'required',
 
         ]);
 
         // File Uploaded
         $imageName=time().'.'.$request->photo->extension();
-
         $request->photo->move(public_path('backend/packageimg/'),$imageName);
         $myfile='backend/packageimg/'.$imageName; 
 
-            // Data insert
+        // Data insert
         $package=new Package;
-
         $package->name=$request->name;                
         $package->photo=$myfile;                    
-        $package->category_id=$request->category; 
-        $package->service_id=$request->service; 
-
         $package->save();
 
+        // $package = Package::find($package_id);
+        $package->services()->attach($service);
             // Redirect
         return redirect()->route('packages.index');  
 
@@ -79,7 +80,7 @@ class PackageController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -90,11 +91,11 @@ class PackageController extends Controller
      */
     public function edit($id)
     {
-        $categories=Category::all();
+
         $services=Service::all();
         $package=Package::find($id);
 
-        return view('backend.packages.edit',compact('services','categories','package'));
+        return view('backend.packages.edit',compact('services','package'));
 
     }
 
@@ -105,40 +106,32 @@ class PackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'name'=>'required',
-    //         'photo'=>'required',
-    //         'category'=>'required',
-    //         'service'=>'required',
+    public function update(Request $request, $id)
+    {
+        $ser=$request->service;
 
-    //     ]);
-
-    //     // File Uploaded
-    //     $imageName=time().'.'.$request->photo->extension();
-
-    //     $request->photo->move(public_path('backend/packageimg/'),$imageName);
-    //     $myfile='backend/packageimg/'.$imageName; 
-    //          // delete old photo(unlink) 
-    //     $old=$request->oldphoto;
-    //     unlink($old);
-    // }else{
-    //     $myfile=$request->oldphoto;
-    // } 
+        // File Uploaded
+        if($request->hasFile('photo')){
+            $imageName=time().'.'.$request->photo->extension();
+            $request->photo->move(public_path('backend/packageimg/'),$imageName);
+            $myfile='backend/packageimg/'.$imageName; 
+        //  delete old photo(unlink) 
+            $old=$request->oldphoto;
+            unlink($old);
+        }else{
+            $myfile=$request->oldphoto;
+        } 
             // Data insert
-    // $package=Package::find($id);
+        $package=Package::find($id);
+        $package->name=$request->name;                
+        $package->photo=$myfile;                    
 
-    // $package->name=$request->name;                
-    // $package->photo=$myfile;                    
-    // $package->category_id=$request->category; 
-    // $package->service_id=$request->service; 
-
-    // $package->save();
+        $package->save();
 
             // Redirect
-//     return redirect()->route('packages.index');  
-// }
+        $package->services()->attach($ser);
+        return redirect()->route('packages.index');  
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -152,4 +145,6 @@ class PackageController extends Controller
         $packages->delete();
         return redirect()->route('packages.index');
     }
+
 }
+

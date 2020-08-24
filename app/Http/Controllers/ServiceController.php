@@ -14,7 +14,6 @@ class ServiceController extends Controller
      */
     public function index()
     {
-      
         $services=Service::all();
         return view('backend.services.index',compact('services'));
 
