@@ -1,0 +1,102 @@
+.dropdown:hover>.dropdown-menu{
+	display:block;
+	background-color: white;
+	opacity: 0.8;
+}
+dropdown-content a{
+	color: white;
+}
+.dropdown-content a:hover {background-color:#debe50;}
+
+nav.navbar{
+	background-image: linear-gradient(120deg,#aba9a2,#debe50);
+
+}
+nav.smartz{
+	box-shadow: 0 10px 20px rgba(69,96,115,0.4);
+}
+nav.smartz .navbar-nav .nav-item .nav-link{
+	color: white;
+}
+
+nav.smartz .navbar-nav .nav-item .nav-link:hover{
+	color: gold;
+	transform: translate(0,-5px);
+	transition-duration: .3s;
+
+}
+@font-face{
+	font-family: "offline";
+	src:url(Great_Vibes/GreatVibes-Regular.ttf);
+}
+.navbar-brand{
+	color: #debe50;
+	font-family: "offline";
+	font-size: 30px;
+}
+
+
+/*hone pge conatct block*/
+div.contact-block{
+	background-image: url(images/banner1.jpeg);
+	position: relative;
+	z-index: 1;
+	}
+div.contact-block::before{
+	background: black;
+	content: "";
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	opacity: 0.7;
+	z-index: -1;
+
+}
+
+/*divider*/
+hr.divider{
+	max-width: 5.25rem;
+	border-width: 0.2rem;
+	border-color: #aba9a2;
+}
+/*div.card{
+	border-radius: 30px;
+}*/
+.flu{
+	border-radius: 30px;
+}
+
+div.overlay1 {
+			position: absolute;
+			bottom: 50%;
+			left: 0;
+			right: 0;
+			background-color: grey;
+			border-radius: 30px;
+			opacity: 0.6;
+			overflow: hidden;
+			width: 100%;
+			height: 0;
+			transition: .5s ease;
+		}
+
+div.card:hover .overlay1 {
+			bottom: 0;
+			height: 100%;
+		}
+
+div.text2 {
+			color: gold;
+			font-weight: bold;
+			font-size: 20px;
+			position: absolute;
+			top: 25%;
+			left: 25%;
+			-webkit-transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			text-align: center;
+		}
+

@@ -38,6 +38,20 @@
 				</div>
 
 				<div class="offset-md-3 col-md-1">
+					<label for="price">
+						<strong>Price</strong>
+					</label>		
+				</div>
+				<div class="col-md-5">
+					<div class="form-group">
+						<input type="number" name="price" class="form-control" id="price">
+						@error('name')
+						<p class="text-danger">Your price is required!</p>
+						@enderror
+					</div>
+				</div>
+
+				<div class="offset-md-3 col-md-1">
 					<label for="photo1">
 						<strong>Services</strong>
 					</label>		

@@ -8,6 +8,9 @@
 			<th>No</th>
 			<th>Name</th>
 			<th>Photo</th>
+			<th>Price</th>
+			<th>Service</th>
+			
 			<th>Action</th>
 		</thead>
 
@@ -18,7 +21,13 @@
 				<td>{{$j++}}</td>
 				<td>{{$package->name}}</td>
 				<td><img src="{{$package->photo}}" class="img-fluid" width="75px;"></td>
-				
+				<td>{{$package->price}}</td>
+				<td>
+				@foreach($services as $service)							
+					<span>{{ $service->name}},</span>
+												
+					@endforeach
+				</td>
 				<td>
 					<a href="{{route('packages.edit',$package->id)}}" class="btn btn-secondary btn-sm">Edit</a>
 

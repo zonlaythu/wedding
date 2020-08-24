@@ -20,11 +20,15 @@ Route::get('/dashboard', 'BackendController@dashboard')->name('dashboard');
 Route::resource('/categories','CategoryController');
 Route::resource('/services','ServiceController');
 Route::resource('/packages','PackageController');
-Route::get('/select2','PackageController@getdata')->name('select2');
+
 });
+
+//Frontend
+Route::get('/home', 'FrontendController@home')->name('index');
 
 
 Route::resource('/orders','OrderController');
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+

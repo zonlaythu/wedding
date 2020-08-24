@@ -39,7 +39,21 @@
 						<p class="text-danger">Your photo is required!</p>
 						@enderror
 					</div>
-				</div>				
+				</div>	
+
+				<div class="offset-md-3 col-md-1">
+					<label for="price">
+						<strong>Price</strong>
+					</label>		
+				</div>
+				<div class="col-md-5">
+					<div class="form-group">
+						<input type="number" name="price" class="form-control" id="price" value="{{$package->price}}">
+						@error('name')
+						<p class="text-danger">Your Price is required!</p>
+						@enderror
+					</div>
+				</div>			
 
 				<div class="offset-md-3 col-md-2 mt-3">
 					<button class="btn btn-primary float-right" type="submit" name="btnsubmit">Save</button>

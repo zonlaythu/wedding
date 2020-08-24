@@ -15,8 +15,9 @@ class PackageController extends Controller
      */
     public function index()
     {   
+        $services=Service::All(); 
         $packages=Package::all();
-        return view('backend.packages.index',compact('packages'));
+        return view('backend.packages.index',compact('packages','services'));
     }
 
     /**
@@ -80,7 +81,8 @@ class PackageController extends Controller
      */
     public function show($id)
     {
-
+        // $package=Package::find($id);
+        // return view('backend.packages.show',compact('package'));
     }
 
     /**
@@ -123,7 +125,8 @@ class PackageController extends Controller
         } 
             // Data insert
         $package=Package::find($id);
-        $package->name=$request->name;                
+        $package->name=$request->name;
+        $package->price=$request->price;                
         $package->photo=$myfile;                    
 
         $package->save();
