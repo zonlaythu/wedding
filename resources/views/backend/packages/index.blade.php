@@ -23,10 +23,11 @@
 				<td><img src="{{$package->photo}}" class="img-fluid" width="75px;"></td>
 				<td>{{$package->price}}</td>
 				<td>
-				@foreach($services as $service)							
-					<span>{{ $service->name}},</span>
-												
-					@endforeach
+				 @foreach($package->services as $service)
+					 
+						<span class="d-block">{{$service->name}}</span>
+										
+				@endforeach
 				</td>
 				<td>
 					<a href="{{route('packages.edit',$package->id)}}" class="btn btn-secondary btn-sm">Edit</a>

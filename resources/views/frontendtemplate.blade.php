@@ -80,6 +80,8 @@
 <!-- end nav bar -->
 @yield('contact')
 
+@yield('sidebar')
+
 <!-- contact us -->
 <div class="contact-block">
 	<div class="container text-center text-light py-5">

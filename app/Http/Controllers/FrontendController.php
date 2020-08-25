@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Package;
 use App\Service;
+use App\Category;
 
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class FrontendController extends Controller
     	$services = Service::take(4)->get();
     	return view('frontend.home',compact('packages','services'));
     }
+
 
     // Package detail
    public function detail($id)
@@ -34,4 +36,9 @@ class FrontendController extends Controller
     
      return view('frontend.profile');
    }
+
+    public function filtercategory($value=''){
+    	$categories = Category::all();
+    	return view('frontend.filterpackage',compact('categories'));
+    }
 }

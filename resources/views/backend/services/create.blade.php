@@ -58,7 +58,7 @@
 				</div>
 				<div class="col-md-5 mt-2">
 					<div class="form-group">
-						<input type="number" name="price" class="form-control" id="price1">
+						<input type="text" name="price" class="form-control" id="price1">
 						@error('price')
 						<p class="text-danger">Your price is required!</p>
 						@enderror
@@ -72,7 +72,7 @@
 				</div>
 				<div class="col-md-5 mt-2">
 					<div class="form-group">
-						<input type="text" name="description" class="form-control" id="des">
+						<textarea type="text" name="description" class="form-control" id="des"></textarea>
 						@error('description')
 						<p class="text-danger">Your description is required!</p>
 						@enderror

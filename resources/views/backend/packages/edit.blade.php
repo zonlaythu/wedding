@@ -55,6 +55,28 @@
 						<p class="text-danger">Your Price is required!</p>
 						@enderror
 					</div>
+				</div>
+
+				<div class="offset-md-3 col-md-1">
+					<label for="photo1">
+						<strong>Services</strong>
+					</label>		
+				</div>
+				<div class="col-md-5 mt-2">
+					<select name="services[]" class="sel form-control" multiple="multiple">
+
+						@foreach($services as $service)
+						<option value="{{$service->id}}" 
+							@foreach($package->services as $pserve)
+								@if($service->id == $pserve->id)
+								{{'selected'}}
+								@endif
+							@endforeach
+						>
+							{{$service->name}}
+						</option>
+						@endforeach
+					</select>
 				</div>			
 
 				<div class="offset-md-3 col-md-2 mt-3">
@@ -68,4 +90,17 @@
 	</div>
 
 
+@endsection
+
+@section('script')
+<script type="text/javascript">
+
+$(document).ready(function(){
+ $(".sel").select2({
+ 	tags:true,	
+ 	allowClear:true,
+ });
+  })
+	
+</script>
 @endsection
