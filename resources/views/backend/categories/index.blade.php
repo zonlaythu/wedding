@@ -9,6 +9,7 @@
 		<thead>
 			<th>No</th>
 			<th>Name</th>
+			<th>Photo</th>
 			<th>Actions</th>
 		</thead>
 
@@ -18,6 +19,7 @@
 			<tr>
 				<td>{{$j++}}</td>
 				<td>{{$category->name}}</td>
+				<td><img src="{{asset($category->photo)}}" width="100" height="100"></td>
 				<td>
 					<a href="{{route('categories.edit',$category->id)}}" class="btn btn-secondary btn-sm">Edit</a>
 

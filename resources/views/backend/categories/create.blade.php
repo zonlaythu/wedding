@@ -5,7 +5,7 @@
 
 	{{-- <div class="offset-md-2 col-md-8"> --}}
 
-		<form method="POST" action="{{route('categories.store')}}">
+		<form method="POST" action="{{route('categories.store')}}" enctype="multipart/form-data">
 			<div class="row">
 				@csrf
 
@@ -20,6 +20,20 @@
 						<input type="text" name="name" class="form-control" id="name1">
 						@error('name')
 						<p class="text-danger">Your Name is required!</p>
+						@enderror
+					</div>
+				</div>
+
+				<div class="offset-md-3 col-md-1">
+					<label for="photo1">
+						<strong>Photo</strong>
+					</label>		
+				</div>
+				<div class="col-md-5">
+					<div class="form-group">
+						<input type="file" name="photo" class="form-control-file" id="photo1">
+						@error('name')
+						<p class="text-danger">Your photo is required!</p>
 						@enderror
 					</div>
 				</div>

@@ -36,15 +36,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             
             'name'=>'required',
+            'photo'=>'required',
 
         ]);
 
+       // File Uploaded
+        $imageName=time().'.'.$request->photo->extension();
+        $request->photo->move(public_path('backend/categoryimg/'),$imageName);
+        $myfile='backend/categoryimg/'.$imageName; 
+
+
             // Data insert
             $category=new Category;   
-            $category->name=$request->name;             
+            $category->name=$request->name;
+            $category->photo=$myfile;             
  
             $category->save();
 
@@ -74,6 +83,7 @@ class CategoryController extends Controller
     {
         $categories=Category::find($id);
         return view('backend.categories.edit',compact('categories'));
+
     }
 
     /**
@@ -88,13 +98,29 @@ class CategoryController extends Controller
         $request->validate([
             
             'name'=>'required',
+            'photo'=>'sometimes'
 
         ]);
+
+
+          // File Uploaded
+     if($request->hasFile('photo')){
+        $imageName=time().'.'.$request->photo->extension();
+        $request->photo->move(public_path('backend/categoryimg'),$imageName);
+        $myfile='backend/categoryimg/'.$imageName;
+            // delete old photo(unlink) 
+        $old=$request->oldphoto;
+        unlink($old);
+    }else{
+        $myfile=$request->oldphoto;
+    } 
+
 
             // Data insert
             $category=Category::find($id);
                
-            $category->name=$request->name;              
+            $category->name=$request->name;
+            $category->photo=$myfile;              
 
             $category->save();
 

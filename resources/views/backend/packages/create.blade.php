@@ -66,7 +66,6 @@
 						@endforeach
 					</select>
 				</div>
-
 				<div class="offset-md-3 col-md-2 mt-3">
 					<button class="btn btn-primary float-right" type="submit" name="btnsubmit">Save</button>
 				</div>

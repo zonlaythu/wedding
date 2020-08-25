@@ -25,6 +25,7 @@ Route::resource('/packages','PackageController');
 
 //Frontend
 Route::get('/home', 'FrontendController@home')->name('index');
+Route::get('/filterpackages', 'FrontendController@filtercategory')->name('sidebar');
 
 
 Route::resource('/orders','OrderController');

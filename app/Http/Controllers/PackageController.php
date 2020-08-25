@@ -15,9 +15,12 @@ class PackageController extends Controller
      */
     public function index()
     {   
-        $services=Service::All(); 
+        // $services=Service::take(3)->get();
+        // $services= Service::find($id);
         $packages=Package::all();
-        return view('backend.packages.index',compact('packages','services'));
+        
+        // dd($packages);
+        return view('backend.packages.index',compact('packages'));
     }
 
     /**
@@ -41,17 +44,11 @@ class PackageController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $service=$request->services;
-        // dd($service);
-        for ($i=0; $i < count($service) ; $i++) { 
-            $pservice=new Service();
-           $pservice->name=$service[$i];
-           // $pservice->save();
-           
-        }
+        
         $request->validate([
             'name'=>'required',
             'photo'=>'required',
+            'price'=>'required',
 
         ]);
 
@@ -63,11 +60,21 @@ class PackageController extends Controller
         // Data insert
         $package=new Package;
         $package->name=$request->name;                
-        $package->photo=$myfile;                    
+        $package->photo=$myfile;
+        $package->price=$request->price;                    
         $package->save();
 
+        $service=$request->services;
+        // dd(count($service));
+        for ($i=0; $i <count($service); $i++) { 
+            // $pservice=new Service();
+           // $service->name=$service[$i];
+           // $pservice->save();
+           $package->services()->attach($service[$i]);
+           
+        }
         // $package = Package::find($package_id);
-        $package->services()->attach($service);
+        
             // Redirect
         return redirect()->route('packages.index');  
 
@@ -82,7 +89,7 @@ class PackageController extends Controller
     public function show($id)
     {
         // $package=Package::find($id);
-        // return view('backend.packages.show',compact('package'));
+        // return view('backend.packages.index',compact('package'));
     }
 
     /**
@@ -96,6 +103,7 @@ class PackageController extends Controller
 
         $services=Service::all();
         $package=Package::find($id);
+
 
         return view('backend.packages.edit',compact('services','package'));
 
@@ -126,8 +134,23 @@ class PackageController extends Controller
             // Data insert
         $package=Package::find($id);
         $package->name=$request->name;
-        $package->price=$request->price;                
-        $package->photo=$myfile;                    
+        $package->photo=$myfile;
+        $package->price=$request->price; 
+
+        $service=$request->services;
+        
+        // dd(count($service));
+        if($service){
+            // for ($i=0; $i <count($service); $i++) { 
+            $package->services()->detach($service);
+            $service->delete();
+        }else{
+
+        for ($i=0; $i <count($service); $i++) { 
+            
+           $package->services()->attach($service[$i]);
+           
+        } }                  
 
         $package->save();
 
