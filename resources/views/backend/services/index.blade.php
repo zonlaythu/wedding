@@ -11,7 +11,9 @@
 			<th>Category</th>
 			<th>Type</th>
 			<th>Photo</th>
+			<th>Photo Two</th>
 			<th>Price</th>
+
 			<th>Description</th>
 			<th>Actions</th>
 		</thead>
@@ -25,7 +27,7 @@
 				<td>{{$service->category->name}}</td>
 				<td>{{$service->type}}</td>
 				<td><img src="{{$service->photo}}" class="img-fluid" width="75px;"></td>
-
+				<td><img src="{{$service->phototwo}}" class="img-fluid" width="75px;"></td>
 				<td>{{$service->price}}</td>
 				<td>{{$service->description}}</td>
 

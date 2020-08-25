@@ -10,11 +10,7 @@
 	</ol>
 	<div class="carousel-inner">
 		<div class="carousel-item active">
-			<img src="{{asset('frontend/images/banner3.jpg')}}" class="d-block w-100" alt="...">
-			{{-- <div class="carousel-caption d-none d-md-block">
-				<h5>First slide label</h5>
-				<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-			</div> --}}
+			<img src="{{asset('frontend/images/banner1.jpeg')}}" class="d-block w-100" alt="...">
 		</div>
 		<div class="carousel-item">
 			<img src="{{asset('frontend/images/banner4.jpg')}}" class="d-block w-100" alt="...">
@@ -41,6 +37,7 @@
 	</a>
 </div>
 <!-- end carousel -->
+
 	<div class="container py-5">
 		<div class="row">
 			@foreach($packages as $package)
@@ -54,6 +51,10 @@
 						<h5>{{$package->price}}</h5>
 					</div>
 					
+					<div class="card-footer">				
+					<a href="{{route('detailname',$package->id)}}" class="btn btn-secondary">Detail
+					</a>
+				</div>
 				</div>
 			</div>
 			@endforeach

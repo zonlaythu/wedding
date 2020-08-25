@@ -41,6 +41,8 @@
 					</div>
 				</div>	
 
+				
+
 				<div class="offset-md-3 col-md-1">
 					<label for="price">
 						<strong>Price</strong>

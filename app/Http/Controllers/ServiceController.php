@@ -52,19 +52,18 @@ class ServiceController extends Controller
         $imageName=time().'.'.$request->photo->extension();
 
         $request->photo->move(public_path('backend/serviceimg/'),$imageName);
-            $myfile='backend/serviceimg/'.$imageName; 
+            $myfile='backend/serviceimg/'.$imageName;
 
             // Data insert
             $service=new Service;
            
             $service->name=$request->name; 
             $service->type=$request->type;      
-            $service->photo=$myfile;       
+            $service->photo=$myfile;
             $service->price=$request->price;           
             $service->description=$request->description;    
             $service->category_id=$request->category;  
             $service->save();
-
             // Redirect
             return redirect()->route('services.index');  
 
@@ -125,12 +124,24 @@ class ServiceController extends Controller
         $myfile=$request->oldphoto;
     } 
 
+    if($request->hasFile('photo2')){
+        $imageName2=time().'.'.$request->photo2->extension();
+        $request->photo2->move(public_path('backend/serviceimg'),$imageName2);
+        $myfile2='backend/serviceimg/'.$imageName2;
+            // delete old photo(unlink) 
+        $old2=$request->oldphoto2;
+        unlink($old2);
+    }else{
+        $myfile2=$request->oldphoto2;
+    } 
+
             // Data insert
     $service=Service::find($id);
     // $categories=Category::find($id);
     $service->name=$request->name; 
     $service->type=$request->type;      
-    $service->photo=$myfile;       
+    $service->photo=$myfile; 
+    $service->phototwo=$myfile2;
     $service->price=$request->price;           
     $service->description=$request->description;    
     $service->category_id=$request->category;  

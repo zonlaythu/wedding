@@ -50,7 +50,7 @@
 						@enderror
 					</div>
 				</div>
-
+			
 				<div class="offset-md-3 col-md-1 mt-2">
 					<label for="price1">
 						<strong>Price</strong>

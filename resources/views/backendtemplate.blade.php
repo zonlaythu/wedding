@@ -21,7 +21,6 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 
-
   <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
@@ -30,8 +29,6 @@
  {{-- <link href="{{asset('backend/vendor/select2-bootstrap.css')}}" rel="stylesheet" /> --}}
 {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet"/>
  --}} 
-
-
 
 </head>
 
@@ -57,7 +54,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('dashboard')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
         </li>
@@ -73,7 +70,7 @@
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{route('packages.index')}}" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
+           <i class="fas fa-gift"></i>
             <span>Package</span>
           </a>
          
@@ -81,7 +78,7 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{route('packages.index')}}" aria-expanded="true" aria-controls="collapseUtilities">
+          <a class="nav-link collapsed" href="{{route('orders.index')}}" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Orders</span>
           </a>
@@ -316,7 +313,7 @@
           <footer class="sticky-footer bg-white">
             <div class="container my-auto">
               <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2020</span>
+                <span>Copyright &copy; All Rights Reserved | Designed By &hearts;Wedding Planner 2020</span>
               </div>
             </div>
           </footer>

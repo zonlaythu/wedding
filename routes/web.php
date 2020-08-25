@@ -25,10 +25,15 @@ Route::resource('/packages','PackageController');
 
 //Frontend
 Route::get('/home', 'FrontendController@home')->name('index');
+Route::get('package','FrontendController@package')->name('packagename');
+
+Route::get('detail/{id}','FrontendController@detail')->name('detailname');
+Route::get('profile','FrontendController@profile')->name('profilename');
 
 
-Route::resource('/orders','OrderController');
+
+Route::resource('orders','OrderController');
+
 Auth::routes();
-
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');	
 

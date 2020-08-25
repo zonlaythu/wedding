@@ -52,6 +52,7 @@ class PackageController extends Controller
         $request->validate([
             'name'=>'required',
             'photo'=>'required',
+            'price'=>'required',
 
         ]);
 
@@ -63,7 +64,8 @@ class PackageController extends Controller
         // Data insert
         $package=new Package;
         $package->name=$request->name;                
-        $package->photo=$myfile;                    
+        $package->photo=$myfile; 
+        $package->price=$request->price;                   
         $package->save();
 
         // $package = Package::find($package_id);

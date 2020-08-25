@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Wedding Planner</title>
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta charset="utf-8">
 	<link rel="icon" type="text/css" href="images/logo.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,44 +23,60 @@
 				</button>
 				<div class="collapse navbar-collapse" id="mainmenu">
 					<ul class="navbar-nav ml-auto pt-3">
-						<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+						<li class="nav-item"><a href="{{route('index')}}" class="nav-link">Home</a></li>
 						<li class="nav-item">
-						<div class="dropdown">
-							<a class="dropbtn dropdown-toggle text-decoration-none nav-link" id="dLabel" data-toggle="dropdown" >
-								Service
-							</a>
+							<div class="dropdown">
+								<a class="dropbtn dropdown-toggle text-decoration-none nav-link" id="dLabel" data-toggle="dropdown" >
+									Service
+								</a>
 
-							<div class="dropdown-menu dropdown-content"  aria-labelledby="dLabel">
-								<a class="dropdown-item" href="apple.php">Apple</a>
-								<a class="dropdown-item" href="samsung.php">Samsung</a>
-								<a class="dropdown-item" href="huawei.php">Huawei</a>
-								 <a class="dropdown-item" href="xiaomi.php">Xiaomi</a>
-								 <a class="dropdown-item" href="oneplus.php">One plus</a>
+								<div class="dropdown-menu dropdown-content"  aria-labelledby="dLabel">
+									<a class="dropdown-item" href="{{route('packagename')}}">Package</a>
+									<a class="dropdown-item" href="samsung.php">Custom</a>
+								</div>
 							</div>
-						</div>
 						</li>
 						<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
 						<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
-						<li class="nav-item"><a href="about.php" class="nav-link">Login</a></li>
-						<li class="nav-item"><a href="about.php" class="nav-link">Register</a></li>
+						
+						@guest
 						<li class="nav-item">
-							<form action="" class="navbar-form">
-							<div class="form-group input-group">
-							<input type="text" name="" placeholder="Search Here" class="form-control">
-							<div class="input-group-btn">
-								<button type="button" class="btn btn-default">
-									<i class="fas fa-search form-control-feedback" style="color:white"></i>
-								</button>
-							</div>
-							</div>
-						</form>
+							<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
 						</li>
-					</ul>
-				</div>
+						@if (Route::has('register'))
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+						</li>
+						@endif
+						@else
+						<li class="nav-item dropdown">
+							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+								{{ Auth::user()->name }} <span class="caret"></span>
+							</a>
 
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ route('profilename')}}">
+									{{ __('Profile') }}
+								</a>
+
+								<a class="dropdown-item" href="{{ route('logout') }}"
+								onclick="event.preventDefault();
+								document.getElementById('logout-form').submit();">
+								{{ __('Logout') }}
+							</a>
+
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
+						</div>
+					</li>
+					@endguest
+				</ul>
 			</div>
-		</nav>
+
+		</div>
 	</nav>
+</nav>
 <!-- end nav bar -->
 @yield('contact')
 
@@ -86,7 +103,9 @@
 
 <script type="text/javascript" src="{{asset('frontend/bootstrap/js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
+@yield('script')
 
 </body>
 </html>
+
+

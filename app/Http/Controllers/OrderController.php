@@ -35,7 +35,19 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // dd($request);
+        $cartArr=$request->shop_data;
+       
+        }
+
+        $order=new Order;
+        $order->voucherno=uniqid();
+        $order->orderdate=date('Y-m-d');
+        $order->user_id=Auth::id(); /*auth_id*/
+        $order->note="This is note";
+        $order->total=;
+        $order->package_id=;
+        $order->save();
     }
 
     /**
@@ -69,7 +81,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
     }
 
     /**
@@ -80,11 +92,6 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-
-    $order=Order::find($id);
-    $order->delete();
-    return redirect()->route('orders.index'); 
-
-    }
+        //
     }
 }

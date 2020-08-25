@@ -12,7 +12,26 @@ class FrontendController extends Controller
     	$packages = Package::take(8)->get();
     	$services = Service::take(4)->get();
     	return view('frontend.home',compact('packages','services'));
-    	// return view('fronted.home');
     }
 
+    // Package detail
+   public function detail($id)
+   {
+     $package=Package::find($id);
+     return view('frontend.detail',compact('package'));
+   }
+
+   //  all packages 
+   public function package()
+   {
+      $packages=Package::all();
+     return view('frontend.package',compact('packages'));
+   }
+
+
+    public function profile()
+   {
+    
+     return view('frontend.profile');
+   }
 }
