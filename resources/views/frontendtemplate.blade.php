@@ -32,7 +32,7 @@
 
 								<div class="dropdown-menu dropdown-content"  aria-labelledby="dLabel">
 									<a class="dropdown-item" href="{{route('packagename')}}">Package</a>
-									<a class="dropdown-item" href="samsung.php">Custom</a>
+									<a class="dropdown-item" href="service">Custom</a>
 								</div>
 							</div>
 						</li>
@@ -41,11 +41,11 @@
 						
 						@guest
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+							<a class="nav-link" href="{{ route('login')}}">{{ __('Login') }}</a>
 						</li>
 						@if (Route::has('register'))
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+							<a class="nav-link" href="{{ route('register')}}">{{ __('Register') }}</a>
 						</li>
 						@endif
 						@else
@@ -78,9 +78,40 @@
 	</nav>
 </nav>
 <!-- end nav bar -->
-@yield('contact')
+<div class="row">
 
 @yield('sidebar')
+@yield('contact')
+
+</div>
+
+<div class="container-fluid" style="background-color: white">
+		<div class="container py-3">
+			 <div class="row">
+			 	<div class="col-lg-3">
+			 		<i class="far fa-heart fa-2x py-2" style="color: grey" ></i>
+			 		<h5 style="color: #debe50;font-family: offline">Wedding Vision</h5>
+			 		<p style="color: grey">Define your wedding style and get matched with local vendors.</p>
+			 	</div>
+			 	<div class="col-lg-3">
+			 		<i class="fas fa-comments-dollar fa-2x py-2" style="color: grey"></i>
+			 		<h5 style="color: #debe50;font-family: offline">Budgeter</h5>
+			 		<p style="color: grey">Get a personalized spending plan based on your unique budget.</p>
+			 	</div>
+			 	<div class="col-lg-3">
+			 		<i class="fas fa-list fa-2x py-2" style="color: grey"></i>
+			 		<h5 style="color: #debe50;font-family: offline">Checklist</h5>
+			 		<p style="color: grey">Always know what to do, when, with your 24/7 wedding planner.</p>
+			 	</div>
+			 	<div class="col-lg-3">
+			 		<i class="fas fa-gift fa-2x py-2" style="color: grey"></i>
+			 		<h5 style="color: #debe50;font-family: offline">Registry</h5>
+			 		<p style="color: grey">Your retail, cash,experience, all in one place.</p>
+			 	</div>
+			 </div>
+		</div>
+		</div>	
+
 
 <!-- contact us -->
 <div class="contact-block">
@@ -92,8 +123,8 @@
 		<p><i class="fas fa-phone-alt text-warning"></i>(+95) 09 430 115 559</p>
 		<p><i class="fab fa-viber text-warning"></i> viber/WhatsApp: +9543075559</p>
 		<p><i class="far fa-envelope text-warning"></i>intel@gmail.com<br>Info@intelmyanmartravel.com<br>weddingplan@gmail.com</p>
-		<a href="contact.html" class="btn" style="background-image: linear-gradient(120deg,#aba9a2,#debe50);border-radius: 15px;" >Contact Us</a>
-	</div>
+	{{-- 	<a href="contact.html" class="btn" style="background-image: linear-gradient(120deg,#aba9a2,#debe50);border-radius: 15px;" >Contact Us</a>
+	</div> --}}
 </div>
 <!-- footer -->
 <footer class=" py-4" style="background-image: linear-gradient(120deg,#aba9a2,#debe50);">

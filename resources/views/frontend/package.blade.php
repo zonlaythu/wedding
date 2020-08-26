@@ -2,7 +2,6 @@
 @section('contact')
 
 	<div class="container py-5">
-		<h2 class="text-center">Choose Package</h2>
 		<div class="row">
 			@foreach($packages as $package)
 			<div class="col-md-3 my-1 px-0">
@@ -14,7 +13,11 @@
 						</h4>
 						<h5>{{$package->price}}</h5>
 					</div>
-					<a href="url" class="btn btn-primary">Detail</a>
+					
+					<div class="card-footer">				
+					<a href="{{route('detailname',$package->id)}}" class="btn btn-secondary">Detail
+					</a>
+				</div>
 				</div>
 			</div>
 			@endforeach

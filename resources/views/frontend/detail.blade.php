@@ -16,6 +16,7 @@
 						<tr> 
 							<td>Name</td>
 							<td>{{$package->name}}</td>
+							
 						</tr>
 
 						<tr>
@@ -32,31 +33,57 @@
 
 						<tr>
 							<td>
-								<a href="#" class="btn btn-info addtocart"
+								@role('customer')
+								<a href="{{route('index')}}" id="addtocart" class="btn btn-info "
 								data-id="{{$package->id}}"
 								data-name="{{$package->name}}"
 								data-price="{{$package->price}}"
-								data-photo="{{$package->photo}}"
-								>Add to Cart</a>
-							</td>
-							<td>
-									@role('customer')
-									<a href="#" class="btn btn-secondary buy_now">Book Now</a>
-									@else
+								data-photo="{{$package->photo}}">Book Now</a>
+								@else
 									<a href="{{route('login')}}" class="btn btn-secondary buy_now">Login to Book</a>
-									@endrole								
+								@endrole	
 							</td>
-						</tr>
-					</tbody>
-				</table> 
-			</div>
+						
+							</tr>
+						</tbody>
+					</table> 
+				</div>
 
+			</div>
 		</div>
-	</div>
 </div>
 </div>
 @endsection
 
+
 @section('script')
-<script type="text/javascript" src="{{asset('frontend/Js/script.js')}}"></script>
+{{-- <script type="text/javascript" src="{{asset('frontend/Js/script.js')}}"></script> --}}
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+	$("#addtocart").click(function(){
+		// alert("hi");
+		var id= $(this).data('id');
+		var name = $(this).data('name');
+		var photo = $(this).data('photo');
+		var price = $(this).data('price');
+		// alert(name);
+      $.post('/orders',{id:id,name:name,photo,price:price},function(response)
+      {
+
+      });
+
+
+})
+})
+
+</script>
+
 @endsection

@@ -114,43 +114,42 @@ $.ajaxSetup({
 	// }
 
 // For Book now
-$(".buy_now").on('click',function(){
-	// alert("Lol");
-	var shopString=localStorage.getItem("wedding");
-	// console.log(shopString);
-	if (shopString) {	
-		$.post('/orders',{shop_data:shopString},function(response){
-			if(response) {
-			alert(response);
-				// localStorage.clear();
+// $(".buy_now").on('click',function(){
+// 	// alert("Lol");
+// 	var shopString=localStorage.getItem("wedding");
+// 	// console.log(shopString);
+// 	if (shopString) {	
+// 		$.post('/orders',{shop_data:shopString},function(response){
+// 			if(response) {
+// 			alert(response);
+// 				// localStorage.clear();
 				
-			}
-		})
-	}
-})
+// 			}
+// 		})
+// 	}
+// })
 
   // For But Now
-  // $('.buy_now').on('click',function(){
-  // 	alert('ok');
-  //   // var notes = $('.notes').val();
-  //   // var total = $('.total').val();
-  //   var shopString = localStorage.getItem("wedding");
-  //   // alert(shopString);
-  //   if (shopString) {
-  //     // var shopArray = JSON.parse(shopString);
+  $('.buy_now').on('click',function(){
+  	// alert('ok');
+    // var notes = $('.notes').val();
+    // var total = $('.total').val();
+    var shopString = localStorage.getItem("wedding");
+    // alert(shopString);
+    if (shopString) {
+      var shopArray = JSON.parse(shopString);
+      $.post('/orders',{shop_data:shopArray},function(response){
+        if (response) {
+          alert(response);
+          console.log(response);
+          // localStorage.clear();
+          // getData();
+          // location.href="/";
+        }
+      })
 
-  //     $.post('/orders',{shop_data:shopString},function(response){
-  //       if (response) {
-  //         alert(response);
-  //         console.log(response);
-  //         // localStorage.clear();
-  //         getData();
-  //         location.href="/";
-  //       }
-  //     })
+    }
 
-  //   }
-
-  // })
+  })
 
 })

@@ -11,15 +11,10 @@
 			<th>Category</th>
 			{{-- <th>Type</th> --}}
 			<th>Photo</th>
-<<<<<<< HEAD
-			<th>Photo Two</th>
+
 			<th>Price</th>
 
 			<th>Description</th>
-=======
-			{{-- <th>Price</th> --}}
-			{{-- <th>Description</th> --}}
->>>>>>> 91634c119615260bea68f68e3c3786fd44f7331d
 			<th>Actions</th>
 		</thead>
 
@@ -32,15 +27,13 @@
 				<td>{{$service->category->name}}</td>
 				{{-- <td>{{$service->type}}</td> --}}
 				<td><img src="{{$service->photo}}" class="img-fluid" width="75px;"></td>
-<<<<<<< HEAD
-				<td><img src="{{$service->phototwo}}" class="img-fluid" width="75px;"></td>
+
 				<td>{{$service->price}}</td>
 				<td>{{$service->description}}</td>
-=======
+
 
 				{{-- <td>{{$service->price}}</td> --}}
 				{{-- <td>{{$service->description}}</td> --}}
->>>>>>> 91634c119615260bea68f68e3c3786fd44f7331d
 
 				<td>
 					<a href="#" class="box btn btn-warning btn-sm" data-id="{{$service->id}}" data-name="{{$service->name}}"data-photo="{{$service->photo}}" data-price="{{$service->price}}" data-desc="{{$service->description}}">

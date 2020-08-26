@@ -23,7 +23,7 @@
 				<td>{{$order->orderdate}}</td>
 				<td>{{$order->user_id}}</td>
 				<td>{{$order->package_id}}</td>
-				<td>{{$order->price}}</td>
+				<td>{{$order->total}}</td>
 				<td>
 					<form method="POST" action="{{route('orders.destroy',$order->id)}}" onsubmit="return confirm('Are you sure?')" class="d-inline-block">
 						@csrf

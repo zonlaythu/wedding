@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
+use App\Order;
 class OrderController extends Controller
 {
+    
+     public function __construct(){
+
+        $this->middleware('role:customer',['only'=>['store']]);
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +31,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,19 +42,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-         // dd($request);
-        $cartArr=$request->shop_data;
-       
-        }
-
+         // dd($request->id);
+        
         $order=new Order;
         $order->voucherno=uniqid();
         $order->orderdate=date('Y-m-d');
         $order->user_id=Auth::id(); /*auth_id*/
         $order->note="This is note";
-        $order->total=;
-        $order->package_id=;
+        $order->total=$request->price;
+        $order->package_id=$request->id;
         $order->save();
+
+        return 'successfully';
     }
 
     /**

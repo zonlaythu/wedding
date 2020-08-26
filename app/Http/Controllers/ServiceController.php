@@ -124,16 +124,6 @@ class ServiceController extends Controller
         $myfile=$request->oldphoto;
     } 
 
-    if($request->hasFile('photo2')){
-        $imageName2=time().'.'.$request->photo2->extension();
-        $request->photo2->move(public_path('backend/serviceimg'),$imageName2);
-        $myfile2='backend/serviceimg/'.$imageName2;
-            // delete old photo(unlink) 
-        $old2=$request->oldphoto2;
-        unlink($old2);
-    }else{
-        $myfile2=$request->oldphoto2;
-    } 
 
             // Data insert
     $service=Service::find($id);
@@ -141,7 +131,6 @@ class ServiceController extends Controller
     $service->name=$request->name; 
     $service->type=$request->type;      
     $service->photo=$myfile; 
-    $service->phototwo=$myfile2;
     $service->price=$request->price;           
     $service->description=$request->description;    
     $service->category_id=$request->category;  

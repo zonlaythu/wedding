@@ -54,22 +54,6 @@
 					</div>
 				</div>
 
-				<div class="offset-md-3 col-md-1">
-					<label for="photo1">
-						<strong>Photo two</strong>
-					</label>		
-				</div>
-				<div class="col-md-5">
-					<div class="form-group">
-						<input type="file" name="photo2" class="form-control-file" id="photo1">
-						<img src="{{asset($service->phototwo)}}" class="img-fluid w-25 h-25">
-						<input type="hidden" name="oldphoto" value="{{$service->phototwo}}">
-						@error('name')
-						<p class="text-danger">Your photo is required!</p>
-						@enderror
-					</div>
-				</div>
-
 				<div class="offset-md-3 col-md-1 mt-2">
 					<label for="price1">
 						<strong>Price</strong>

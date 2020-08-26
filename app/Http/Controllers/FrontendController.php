@@ -15,6 +15,15 @@ class FrontendController extends Controller
     	return view('frontend.home',compact('packages','services'));
     }
 
+      public function service()
+   {
+
+    $categories=Category::all();
+    // $items=Item::all();
+     return view('frontend.service',compact('categories'));
+
+   }
+
 
     // Package detail
    public function detail($id)
@@ -37,8 +46,28 @@ class FrontendController extends Controller
      return view('frontend.profile');
    }
 
+   //  public function custom(Request $request,$id)
+   // {
+   //  // dd($id);
+   //   $service=Service::find($id);
+   //   return view('frontend.custom',compact('service'));
+   // }
+
     public function filtercategory($value=''){
     	$categories = Category::all();
     	return view('frontend.filterpackage',compact('categories'));
     }
+
+     public function getItems(request $request)
+   {
+
+    $sid=$request->sid;
+    if($sid==0){
+    $services=Service::All();
+    
+  }else{
+    $services=Category::find($sid)->services;
+  }
+     return $services;
+   }
 }

@@ -23,21 +23,28 @@ Route::resource('/packages','PackageController');
 
 });
 
+
 //Frontend
-Route::get('/home', 'FrontendController@home')->name('index');
-<<<<<<< HEAD
+// --------------
+
+Route::get('/', 'FrontendController@home')->name('index');
+
 Route::get('package','FrontendController@package')->name('packagename');
 
 Route::get('detail/{id}','FrontendController@detail')->name('detailname');
-Route::get('profile','FrontendController@profile')->name('profilename');
-=======
-Route::get('/filterpackages', 'FrontendController@filtercategory')->name('sidebar');
->>>>>>> 91634c119615260bea68f68e3c3786fd44f7331d
 
+Route::get('profile','FrontendController@profile')->name('profilename');
+
+Route::get('/service', 'FrontendController@filtercategory')->name('sidebar');
+
+// Route::get('service','FrontendController@service')->name('servicename');
+
+Route::post('customdetail/{id}','FrontendController@custom')->name('customname');
 
 
 Route::resource('orders','OrderController');
 
 Auth::routes();
-Route::get('/', 'HomeController@index')->name('home');	
+// Route::get('/', 'HomeController@index')->name('home');	
+Route::post('/getitems','FrontendController@getItems')->name('getitems');
 
