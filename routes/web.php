@@ -20,7 +20,7 @@ Route::get('/dashboard', 'BackendController@dashboard')->name('dashboard');
 Route::resource('/categories','CategoryController');
 Route::resource('/services','ServiceController');
 Route::resource('/packages','PackageController');
-Route::post('userdetails','BackendController@userdetail')->name('userdetail');
+
 
 });
 
@@ -34,16 +34,25 @@ Route::get('package','FrontendController@package')->name('packagename');
 
 Route::get('detail/{id}','FrontendController@detail')->name('detailname');
 
-// Route::get('profile','FrontendController@profile')->name('profilename');
 
 Route::get('/service', 'FrontendController@filtercategory')->name('sidebar');
+Route::post('fcategory/{id}','FrontendController@fcategory')->name('fcategory');
+
 
 Route::post('customdetail/{id}','FrontendController@custom')->name('customname');
 
-Route::get('checkout','FrontendController@checkout')->name('checkoutname');
+Route::get('checkout','FrontendController@checkout')->name('checkout');
 
 Route::resource('orders','OrderController');
+Route::resource('custompackages','CustomController');
 
+
+Route::get('profile','FrontendController@profile')->name('profilename');
+
+Route::post('userdetail','FrontendController@userdetail')->name('userdetail');
+
+Route::get('about','FrontendController@about')->name('aboutname');
+Route::get('contact','FrontendController@contact')->name('contactname');
 
 Auth::routes();
 // Route::get('/', 'HomeController@index')->name('home');	

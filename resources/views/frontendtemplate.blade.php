@@ -6,6 +6,7 @@
 	<meta charset="utf-8">
 	<link rel="icon" type="text/css" href="images/logo.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 	<link rel="stylesheet" type="text/css" href="{{asset('frontend/bootstrap/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('frontend/style.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('frontend/fontawesome/css/all.min.css')}}">
@@ -32,16 +33,16 @@
 
 								<div class="dropdown-menu dropdown-content"  aria-labelledby="dLabel">
 									<a class="dropdown-item" href="{{route('packagename')}}">Package</a>
-									<a class="dropdown-item" href="service">Custom</a>
+									<a class="dropdown-item" href="{{route('sidebar')}}">Custom</a>
 								</div>
 							</div>
 						</li>
 
-						<li class="nav-item"><a href="#" class="nav-link">About</a></li>
-						<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+						<li class="nav-item"><a href="{{ route('aboutname') }}" class="nav-link">About</a></li>
+						<li class="nav-item"><a href="{{ route('contactname') }}" class="nav-link">Contact</a></li>
 						
 						<li class="nav-item">
-							<a class="nav-link" href="{{route('checkoutname')}}">Cart<span id="item_count"></span></a>
+							<a class="nav-link" href="{{route('checkout')}}">Cart<span id="item_count"></span></a>
 						</li>
 						@guest
 						<li class="nav-item">
@@ -59,7 +60,7 @@
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="">
+								<a class="dropdown-item" href="{{route('profilename')}}">
 									{{ __('Profile') }}
 								</a>
 
@@ -82,15 +83,15 @@
 	</nav>
 </nav>
 <!-- end nav bar -->
-<div class="row">
+<div class="container-fluid pt-4 row">
 
 @yield('sidebar')
 @yield('contact')
 
 </div>
 
-<div class="container-fluid" style="background-color: white">
-		<div class="container py-3 mt-5">
+<div class="container pt-4" style="background-color: white">
+		{{-- <div class="container py-4 mt-4"> --}}
 			 <div class="row">
 			 	<div class="col-lg-3">
 			 		<i class="far fa-heart fa-2x py-2" style="color: grey" ></i>
@@ -113,7 +114,7 @@
 			 		<p style="color: grey">Your retail, cash,experience, all in one place.</p>
 			 	</div>
 			 </div>
-		</div>
+		{{-- </div> --}}
 		</div>	
 
 
@@ -131,15 +132,16 @@
 	</div> --}}
 </div>
 <!-- footer -->
-<footer class=" py-4" style="background-image: linear-gradient(120deg,#aba9a2,#debe50);">
+<footer class="py-4" style="background-image: linear-gradient(120deg,#aba9a2,#debe50);">
 	<div class="container text-center text-dark text-monospace">
 		<p class="m-0">Copyright &copy; All Rights Reserved | Designed By &hearts;<a href="http://saiwun.com" class="text-decoration-none" style="color: #264685"> Wedding Planner</a></p>
 	</div>
 </footer>
 
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="{{asset('frontend/bootstrap/js/jquery.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<script type="text/javascript" src="{{asset('frontend/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 @yield('script')
 
 </body>

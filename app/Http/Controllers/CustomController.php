@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use App\Package;
 use App\Order;
-class OrderController extends Controller
-{
-    
-     public function __construct(){
+use Auth;
 
-        $this->middleware('role:customer',['only'=>['store']]);
-        
-    }
+class CustomController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders=Order::All();
-        return view('backend.orders.index',compact('orders'));
+        //
     }
 
     /**
@@ -31,7 +26,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -41,20 +36,35 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-         // dd($request->id);
-        
-        $order=new Order;
-        $order->voucherno=uniqid();
-        $order->orderdate=date('Y-m-d');
-        $order->user_id=Auth::id(); /*auth_id*/
-        $order->note="This is note";
-        $order->total=$request->price;
-        $order->package_id=$request->id;
+    { 
+      // dd($request);
+        $cartArr = json_decode($request->shop_data);
+        $total = 0;
+        foreach ($cartArr as $row) {
+            $total+= $row->price;
+        }
+        $package = new Package();
+        $package->name = "Customer Created";
+        $package->photo = "This is Customer Package Photo";
+        $package->price = $total;
+        $package->status = 1;
+        $package->save();
+
+        foreach ($cartArr as $row) {
+            $package->services()->attach($row->id);
+        }
+
+        $order = new Order();
+        $order->voucherno = uniqid();
+        $order->orderdate = date('Y-m-d');
+        // $order->status = 1;
+        $order->note = $request->notes;
+        $order->total = $total;
+        $order->user_id = Auth::id();
+        $order->package_id = $package->id;
         $order->save();
 
-        // return redirect()->back() ->with('alert','success');
-        return "successfully";
+        return 'Successful';
     }
 
     /**
@@ -88,7 +98,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
+        //
     }
 
     /**

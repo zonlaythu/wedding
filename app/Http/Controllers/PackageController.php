@@ -17,6 +17,7 @@ class PackageController extends Controller
     {   
         // $services=Service::take(3)->get();
         // $services= Service::find($id);
+       
         $packages=Package::all();
         
         // dd($packages);
@@ -62,7 +63,8 @@ class PackageController extends Controller
         $package->name=$request->name;                
 
         $package->photo=$myfile; 
-        $package->price=$request->price;                   
+        $package->price=$request->price; 
+        $package->status = 2;                  
         $package->save();
 
         $service=$request->services;
@@ -78,6 +80,7 @@ class PackageController extends Controller
         
             // Redirect
         return redirect()->route('packages.index');  
+        // return "successful";
 
     }
 
@@ -134,6 +137,7 @@ class PackageController extends Controller
         } 
             // Data insert
         $package=Package::find($id);
+        $package->services()->detach();
         $package->name=$request->name;
         $package->photo=$myfile;
         $package->price=$request->price; 
@@ -141,17 +145,13 @@ class PackageController extends Controller
         $service=$request->services;
         
         // dd(count($service));
-        if($service){
-            // for ($i=0; $i <count($service); $i++) { 
-            $package->services()->detach($service);
-            $service->delete();
-        }else{
+        
 
         for ($i=0; $i <count($service); $i++) { 
             
            $package->services()->attach($service[$i]);
            
-        } }                  
+        }                   
 
         $package->save();
 

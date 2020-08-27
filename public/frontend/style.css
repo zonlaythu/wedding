@@ -22,7 +22,7 @@ nav.smartz .navbar-nav .nav-item .nav-link{
 
 nav.smartz .navbar-nav .nav-item .nav-link:hover{
 	color: gold;
-	transform: translate(0,-5px);
+	transform: translate(0,-1px);
 	transition-duration: .3s;
 
 }

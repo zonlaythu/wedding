@@ -1,9 +1,9 @@
 
-<div class="col-lg-3">
-	<h1 class="my-4">Shop Name</h1>
-	<div class="list-group border-0">
+<div class="col-lg-3 mt-5">
+	<h1 class="my-4 text-center">Our Services</h1>
+	<div>
 		@foreach($categories as $category)
-		<a href="#" class="list-group-item filter" data-id="{{$category->id}}" data-name="{{$category->name}}">{{$category->name}}</a>
+		<i class="far fa-star"></i><a href="#" class="list-group filter text-decoration-none d-inline-block" data-id="{{$category->id}}" data-name="{{$category->name}}">{{$category->name}}</a>
 		@endforeach
 	</div>
 

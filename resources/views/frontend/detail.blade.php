@@ -1,16 +1,62 @@
 @extends('frontendtemplate')
 @section('contact')
 
-<div class="container mt-5 pt-5">
+<div class="container mt-5 pt-3">
 
-		<h2 class="text-center my-5">Package Detail</h2>
+	<h2 class="text-center my-5">Package Detail</h2>
+	<div class="row">
 
-		<div class="row">
-			<div class="col-md-4">
-				<img src="{{asset($package->photo)}}" class="img-fluid w-75">
-			</div>
+		<div class="offset-md-2 col-md-5">
+			<table>
+				<tr>
+					<td>Package Name:</td>
+					<td>{{$package->name}}</td>
+				</tr>
+				<tr>
+					<td>Package Price:</td>
+					<td>{{$package->price}}</td>
+				</tr>
+				<tr>
+					<td>Available Services:</td>
+					<td>@foreach($package->services as $service)	
+						{{ $service->name}}										
+					@endforeach</td>
+				</tr>
 
-			<div class="col-md-8 table-responsive">
+				<tr>
+					<td>
+						@role('customer')
+						<a href="#" id="addtocart" class="btn btn-info "
+						data-id="{{$package->id}}"
+						data-name="{{$package->name}}"
+						data-price="{{$package->price}}"
+						data-photo="{{$package->photo}}">Book Now</a>
+						@else
+						<a href="{{route('login')}}" class="btn btn-secondary buy_now">Login to Book</a>
+						@endrole		
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
+		<div class="col-md-5">
+			<div class="row">
+				<div class="col-md-12">
+					<img src="{{asset($package->photo)}}" class="img-fluid">
+				</div>
+
+				<div class="col-md-12 mt-2">
+					@foreach($package->services as $service)	
+					<img src="{{asset($service->photo)}}" class="img-fluid">										
+					@endforeach
+				</div>
+			</div>	
+		</div>		
+	</div>
+
+
+			{{-- <div class="col-md-8 table-responsive">
 				<table class="table">
 					<tbody>
 						<tr> 
@@ -46,25 +92,23 @@
 						</tr>
 					</tbody>
 				</table> 
-			</div>
-	</div>
-</div>
-@endsection
+			</div> --}}
+		</div>
+		@endsection
 
+		@section('script')
+		{{-- <script type="text/javascript" src="{{asset('frontend/Js/script.js')}}"></script> --}}
 
-@section('script')
-{{-- <script type="text/javascript" src="{{asset('frontend/Js/script.js')}}"></script> --}}
+		<script type="text/javascript">
+			$(document).ready(function(){
 
-<script type="text/javascript">
-	$(document).ready(function(){
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
 
-		$.ajaxSetup({
-			headers: {
-				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			}
-		});
-
-		$("#addtocart").click(function(){
+				$("#addtocart").click(function(){
 		// alert("hi");
 		var id= $(this).data('id');
 		var name = $(this).data('name');
@@ -73,15 +117,16 @@
 		// alert(name);
 		$.post('/orders',{id:id,name:name,photo,price:price},function(response)
 		{
-      	alert(response);
-      	swal("Good job!", "You clicked the button!", "success")
-
-      });
+			if (response) {
+			swal('successful','successful','success');
+			// location.href="/";
+			}
+		});
 
 
 	})
-	})
+			})
 
-</script>
+		</script>
 
-@endsection
+		@endsection

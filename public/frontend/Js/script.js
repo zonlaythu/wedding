@@ -1,12 +1,14 @@
 $(document).ready(function(){
-	// getData();
+
+	getData();
 	count();
 
-$.ajaxSetup({
+	$.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+
 
 	// Count
 	function count(){
@@ -15,37 +17,35 @@ $.ajaxSetup({
 			var shopArray = JSON.parse(shopString);
 			if (shopArray!=0) {
 				var count=shopArray.length;
-				$("#item_count").text('('+count+')');	
-				
+				$("#item_count").text('('+count+')');
 			}else {
 				$("#item_count").text('()');	
 			}
 
 		}else {
-				$("#item_count").text('()');	
-				
+			$("#item_count").text('()');	
 		}
 	};
 
 
 	// Add To Cart
-	$(".order").on('click',function(){
+	$(".myItems").on('click','.order',function(){
+		// alert();
 		var item_qty=parseInt($('#qty').val());
 		var id = $(this).data('id');
 		var name = $(this).data('name');
 		var photo = $(this).data('photo');
 		var price = $(this).data('price');
-		var qty=1;
-		if (item_qty) {
-			qty+=item_qty;
-		}
+		// var qty=1;
+		// if (item_qty) {
+		// 	qty+=item_qty;
+		// }
 
 		var shop_item = {
 			id:id,
 			name:name,
 			price:price,
-			photo:photo,
-			qty:qty
+			photo:photo
 		}
 
 		var shopString = localStorage.getItem("wedding");
@@ -74,8 +74,7 @@ $.ajaxSetup({
 		}
 
 		var shopData = JSON.stringify(shopArray);
-		localStorage.setItem("shop", shopData);
-		// console.log(shopData);
+		localStorage.setItem("wedding", shopData);
 		count();
 
 	});
@@ -85,68 +84,124 @@ $.ajaxSetup({
 		var shopString = localStorage.getItem("wedding");
 		if (shopString) {
 			var shopArray = JSON.parse(shopString);
-
+			console.log(shopArray);
 			var html='';
 			var no=1;
 			var total=0;
 			$.each(shopArray,function(i,v){
-				var photo=v.photo;
 				var name = v.name;
+				var photo = v.photo;
 				var unit_price = v.price;
-				var discount = v.discount;
-				var qty = v.qty;
-				console.log(name,unit_price,discount,qty);
-
-				if (discount) {
-					var price_show=discount+'<del class="d-block">'+unit_price+'</del>';
-					var price = discount;
-					// console.log(price);					
-				}else{
-					var price_show = unit_price;
-					var price = unit_price;
-				}
-					// console.log(price);					
 				
+				// if (discount) {
+				// 	var price_show=discount+'<del class="d-block">'+unit_price+'</del>';
+				// 	var price = discount;
+				// }else{
+				// 	var price_show = unit_price;
+				// 	var price = unit_price;
+				// }
+
 				html += `<tr>
 						<td>${no++}</td>
-						<td><img src="${photo}" class="w-25"></td>
 						<td>${name}</td>
-						<td>${price_show}</td>
-						<td><button class="btn btn-light btn-sm min" data-item_i="${i}">-</button> ${qty} <button class="btn btn-light btn-sm max" data-item_i="${i}">+</button></td>
-						<td>${price*qty}</td>
-
+						<td><img src="${photo}" width="100" height="100"></td>
+						<td>${unit_price}</td>
 					</tr>`;	
 
-					total += price*qty;
-			})
+					total +=unit_price;
+			});
 
 			html+=`<tr>
-				<td colspan="4">Total</td>
+				<td colspan="3">Total</td>
 				<td>${total}</td>
 				</tr>`
 
 			$("tbody").html(html);
+			$(".total").val(total);
 
 		}else{
 			html='';
 			$("tbody").html(html);
 		}
+
 	}
 
-For Book now
-$(".buy_now").on('click',function(){
-	// alert("Lol");
-	var shopString=localStorage.getItem("wedding");
-	// console.log(shopString);
-	if (shopString) {	
-		$.post('/orders',{shop_data:shopString},function(response){
-			if(response) {
-			alert(response);
-				// localStorage.clear();
-				
+
+
+	$("tbody").on('click','.max',function(){
+
+		var item_i = $(this).data('item_i');
+
+		var shopString = localStorage.getItem("wedding");
+		if (shopString) {
+
+			var shopArray = JSON.parse(shopString);
+
+			$.each(shopArray,function(i,v){
+				if (item_i==i) {
+					v.qty++;
+				}
+
+			})
+
+			var shopData=JSON.stringify(shopArray);
+			localStorage.setItem("wedding",shopData);
+			getData();
+			count();
+
+		}
+
+	});
+
+	$("tbody").on('click','.min',function(){
+		var item_i = $(this).data('item_i');
+
+		var shopString = localStorage.getItem("wedding");
+		if (shopString) {
+
+			var shopArray = JSON.parse(shopString);
+
+			$.each(shopArray,function(i,v){
+				if (item_i==i) {
+					v.qty--;
+					if (v.qty==0) {
+						shopArray.splice(item_i,1);
+					}
+				}
+
+			})
+
+			var shopData=JSON.stringify(shopArray);
+			localStorage.setItem("wedding",shopData);
+			getData();
+			count();
+
+		}
+	})
+
+
+		// for buy now
+		$('.buy_now').on('click',function(){
+			// alert();
+			var notes = $('.notes').val();
+			// alert(notes);
+			// var total = $('.total').val();
+			
+			var shopString = localStorage.getItem("wedding");
+			// alert (shopString);
+			if (shopString){
+				// var shopArray = JSON.parse(shopString);
+				$.post('custompackages',{shop_data:shopString,notes:notes},function(response){
+					 console.log(response);
+					if(response) {
+						// alert(response);
+						localStorage.clear();
+						getData();
+						location.href = "/";
+					}
+				})
 			}
 		})
-	}
-})
 
-})
+
+	})
