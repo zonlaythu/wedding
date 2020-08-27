@@ -12,7 +12,8 @@
 @endsection
 
 @section('script')
-	{{-- <script type="text/javascript" src="{{asset('frontend/js/script.js')}}"></script> --}}
+	<script type="text/javascript" src="{{asset('frontend/Js/script.js')}}"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$.ajaxSetup({

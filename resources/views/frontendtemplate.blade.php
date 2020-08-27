@@ -36,9 +36,13 @@
 								</div>
 							</div>
 						</li>
-						<li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
+
+						<li class="nav-item"><a href="#" class="nav-link">About</a></li>
 						<li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
 						
+						<li class="nav-item">
+							<a class="nav-link" href="{{route('checkoutname')}}">Cart<span id="item_count"></span></a>
+						</li>
 						@guest
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('login')}}">{{ __('Login') }}</a>
@@ -55,7 +59,7 @@
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{ route('profilename')}}">
+								<a class="dropdown-item" href="">
 									{{ __('Profile') }}
 								</a>
 
@@ -86,7 +90,7 @@
 </div>
 
 <div class="container-fluid" style="background-color: white">
-		<div class="container py-3">
+		<div class="container py-3 mt-5">
 			 <div class="row">
 			 	<div class="col-lg-3">
 			 		<i class="far fa-heart fa-2x py-2" style="color: grey" ></i>

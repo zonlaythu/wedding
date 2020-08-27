@@ -1,7 +1,7 @@
 @extends('frontendtemplate')
 @section('contact')
 
-	<div class="container mt-5">
+	<div class="container mt-5 pt-5">
 		<div class="row">
 			@foreach($categories as $category)
 			<div class="col-md-3 my-1 px-0">
@@ -18,13 +18,10 @@
 						@csrf
 						<button class="btn btn-secondary" type="submit">Detail
 					</button>
-					</form>				
-					
-				
+					</form>								
 				</div>
 			</div>
 			@endforeach
 		</div>
 	</div>
-
 @endsection

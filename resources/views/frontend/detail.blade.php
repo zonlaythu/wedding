@@ -1,10 +1,10 @@
 @extends('frontendtemplate')
 @section('contact')
 
-<div class="col-lg-9">
-	<h2 class="text-center my-5">Package Detail</h2>
+<div class="container mt-5 pt-5">
 
-	<div class="container">
+		<h2 class="text-center my-5">Package Detail</h2>
+
 		<div class="row">
 			<div class="col-md-4">
 				<img src="{{asset($package->photo)}}" class="img-fluid w-75">
@@ -15,8 +15,7 @@
 					<tbody>
 						<tr> 
 							<td>Name</td>
-							<td>{{$package->name}}</td>
-							
+							<td>{{$package->name}}</td>		
 						</tr>
 
 						<tr>
@@ -40,18 +39,15 @@
 								data-price="{{$package->price}}"
 								data-photo="{{$package->photo}}">Book Now</a>
 								@else
-									<a href="{{route('login')}}" class="btn btn-secondary buy_now">Login to Book</a>
+								<a href="{{route('login')}}" class="btn btn-secondary buy_now">Login to Book</a>
 								@endrole	
 							</td>
-						
-							</tr>
-						</tbody>
-					</table> 
-				</div>
 
+						</tr>
+					</tbody>
+				</table> 
 			</div>
-		</div>
-</div>
+	</div>
 </div>
 @endsection
 
@@ -62,27 +58,29 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		});
 
-	$("#addtocart").click(function(){
+		$("#addtocart").click(function(){
 		// alert("hi");
 		var id= $(this).data('id');
 		var name = $(this).data('name');
 		var photo = $(this).data('photo');
 		var price = $(this).data('price');
 		// alert(name);
-      $.post('/orders',{id:id,name:name,photo,price:price},function(response)
-      {
+		$.post('/orders',{id:id,name:name,photo,price:price},function(response)
+		{
+      	alert(response);
+      	swal("Good job!", "You clicked the button!", "success")
 
       });
 
 
-})
-})
+	})
+	})
 
 </script>
 

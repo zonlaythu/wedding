@@ -1,7 +1,7 @@
 .dropdown:hover>.dropdown-menu{
 	display:block;
 	background-color: white;
-	opacity: 0.8;
+	opacity: 0.7;
 }
 dropdown-content a{
 	color: white;
@@ -10,7 +10,8 @@ dropdown-content a{
 
 nav.navbar{
 	background-image: linear-gradient(120deg,#aba9a2,#debe50);
-
+	margin-bottom: 800px;
+	padding-top: 200px;
 }
 nav.smartz{
 	box-shadow: 0 10px 20px rgba(69,96,115,0.4);
@@ -100,3 +101,7 @@ div.text2 {
 			text-align: center;
 		}
 
+.award{
+	width: 50px;
+	height: 50px;
+}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Userdetail;
 
 class BackendController extends Controller
 {
@@ -10,4 +11,5 @@ class BackendController extends Controller
     {
     	return view('backend.dashboard');
     }
+
 }

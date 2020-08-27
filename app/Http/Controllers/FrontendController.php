@@ -70,4 +70,31 @@ class FrontendController extends Controller
   }
      return $services;
    }
+
+
+   // public function userdetail(Request $request)
+   //  {
+   //    dd($request);
+   //     $request->validate([
+   //          'photo'=>'required',
+   //          'phone'=>'required',
+   //          'address'=>'required',
+
+   //      ]);
+
+   //      // File Uploaded
+   //      $imageName=time().'.'.$request->photo->extension();
+   //      $request->photo->move(public_path('backend/detailimg/'),$imageName);
+   //      $myfile='backend/detailimg/'.$imageName; 
+
+   //      // Data insert
+   //      $detail=new Userdetail;
+   //      $detail->phone=$request->phone;                
+   //      $detail->photo=$myfile; 
+   //      $detail->address=$request->address;                   
+   //      $detail->save();
+   //          // Redirect
+   //          return "successfully";  
+   //  }
+
 }
